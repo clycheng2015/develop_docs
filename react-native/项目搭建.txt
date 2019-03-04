@@ -1,0 +1,119 @@
+仓库地址：
+git@gitlab.haomaiche.com:app/app_android_buyer_v5.git
+
+//图片网址
+https://placeimg.com/140/190/any
+//即时通讯
+https://github.com/FaridSafi/react-native-gifted-chat#readme
+
+
+
+一、本地工程与远程关联操作：
+
+1、本地新建工程new project
+2、as打开本地工程，VCS--->Enable Version Control Integration在弹出下拉窗口中选择Git
+3、右键工程的根目录，Git--->Add
+4、右键工程的根目录，Git--->Commit Directory
+5、在.gitignore中加需要忽略提交的文件,有时gitignore文件配置不生效,则执行git rm -r --cached .清除本地缓存再添加
+6、按照提交代码的步骤，选择需要提交的文件，填写提交的Commit message，点击push and commit
+7、在下一页面，点击Definte Romte,配置远程仓库的地址
+8、点击确定（PUSH）,提交代码到远程仓库，默认是会新建master分支。
+
+二、新建开发分支（命令行方式）
+1、在AS中点击terminal,执行git branch dev(分支名称)新建分支
+2、切换分支到dev，执行git checkout dev
+3、git add .加入所有改动
+4、git commit -m "message"   #提交所有改动（message为本次修改的描述）
+5、git push origin dev       #将当前分支修改的最新代码推送到远程分支
+
+
+
+三、当前HMC buyer5.0秘钥信息
+1、地址：E:\用户端RN\hmcKeystore.jks
+2、
+key password:hmc1234562017(key store password密码相同)
+alias:hmcBuyer
+
+
+四、打Bundle 包
+1、在原生项目，在android/app/src/main下新建assets目录
+2、执行react-native start启动服务器
+3、执行react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output app/src/main/assets/index.android.bundle --assets-dest app/src/main/res/
+//生成sourcemap文件，便于分析日志（sentry）
+--sourcemap-output app/src/main/assets/index.android.map
+//https://www.jianshu.com/p/f7efa7076aa1    map文件上传
+
+
+
+
+打包，会耗时几分钟，会在assets目录下生成bundle文件
+4，检查drawable文件夹下是否有不符合格式的文件，将其删除在再打包，否则编译出错
+5、release版本打包前，删除悬浮窗权限及DevSettingsActivity注册，debug模式开启
+
+五、apk打包
+//android studio 通过gradle自动化打包命令行:
+//必须在cly分支下打包，master分支会没有腾讯X5的jar包,jar包在node-modules\react-native-cookie\libs目录下
+(环境变量中配置的path配置的gradle版本要与代码gradle-property中配置的版本一致),否则打包失败
+//在jpush_react_native包中，JpushModule的551-558行进行修改了！
+
+
+//版本升级的api原生也需要修改（默认为正式环境API），如果要不修改验证升级，必须在正式环境验证！
+
+
+gradle assemblerelease
+
+ 
+//cookie同步
+cookie:https://github.com/shimohq/react-native-cookie
+注意：为了支持X5 webview cookie同步延迟的问题，在cly分支下新增了部分文件，未同步到其他分支，
+其他分支需要手动添加，代码在node-modules\react-native-cookie包下，
+//getItemLayout:https://github.com/jsoendermann/rn-section-list-get-item-layout
+
+
+//热更新
+http://blog.csdn.net/u013718120/article/details/55096393
+//flatlist自定义
+https://github.com/stoffern/react-native-optimized-flatlist
+//混合路由
+https://github.com/listenzz/react-native-navigation-hybrid
+//v2 react-navigation
+https://blog.csdn.net/u011272795/article/details/80915040
+//react-native-router-flux
+https://blog.csdn.net/f409031mn/article/details/79692580
+
+
+
+//重新npm install之后，nodel_module中有两个方法需要手动修改！
+
+
+
+//备注：rn版本问题，
+react-native": "^0.48.1可以，但是在0.50.3会出现release crash a.View.propsType undefinded错误
+
+
+"react": "^16.0.0-alpha.12",
+"react-native": "^0.48.1",
+
+ "react-navigation": "^1.5.8",
+原来的签名：
+
+ keyAlias 'hmcBuyer'
+            keyPassword 'hmc1234562017'
+            storeFile file('E:/用户端RN/debug.keystore')
+            storePassword 'hmc1234562017'
+
+D/jsonToken=: {"accessToken":"NzJmZGFlZDY0NGFiNGVkYWJmM2Q5MTE3Y2Y3Yzc2YjAjMTA0I0FUIylfd0I0TXhW","refreshToken":"NzJmZGFlZDY0NGFiNGVkYWJmM2Q5MTE3Y2Y3Yzc2YjAjMTA0I1JUIzJKQDRwblNs","accessToken_expires_in":1800,"refreshToken_expires_in":2592000}
+05-24 19:30:18.343 18172-18172/com.xuanyan.haomaiche.webuserapp D/jsonTokenCity=: {"cityCode":"310000"}
+
+
+
+
+
+//图片OOM
+https://zeemee.engineering/react-native-on-android-lessons-learned-99fee8f1d390
+http://static.haomaiche.com/common/images/type/cover/ask/436aef0d5b924bbcbbbd34c7735267d2.png?imageView2/0/w/400/h/400
+
+//发布和开发自己的npm库
+https://www.jianshu.com/p/bf8cfa4c7728 
+
+
