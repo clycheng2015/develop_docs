@@ -1,0 +1,6 @@
+1、RN开发中，ReactInstanceManager的setUseDeveloperSupport方法来进行设置是否开启调试支持。
+
+2、利用Chrome开发调试工具调试js
+
+3、纯RN打包时，必须提前生成签名文件并配置好签名文件，再执行gradlew assembleRelease才能生成签名包
+详情参考：http://www.lcode.org/%E3%80%90react-native%E5%BC%80%E5%8F%91%E3%80%91react-native%E8%BF%9B%E8%A1%8C%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85%E6%88%90apk/

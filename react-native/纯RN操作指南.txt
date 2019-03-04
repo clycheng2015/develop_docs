@@ -1,0 +1,254 @@
+操作步骤：
+1、环境配置
+2、将react-native克隆或者下载到本地目录git clone https://github.com/facebook/react-native.git
+（clone较慢，可进入此工程然后下载赋值到本地）
+3、进入下载的工程下的react-native目录下的react-native-cli目录，输入npm install -g
+4、进入项目的目录,比如自己创建的文件目录（F:\rn\rn_project）后，输入react-native init AwesomeProject创建AwesomeProject项目
+（此时会涉及gradle版本异常及下载，需找到对应的文件并修改）
+
+5、命令行中进入项目目录（F:\rn\rn_project\AwesomeProject），输入react-native start，相当于启动rn服务器
+（此时如果ok，则可以访问http://localhost:8081/index.android.bundle?platform=android）
+
+6、保持之前的命令行窗口不要关闭（不要关闭服务器），打开另外一个cmd窗口，进入工程目录F:\rn\rn_project\AwesomeProject）
+
+7、进入项目目录后，输入react-native run-android，此时连接一台手机或者模拟器，让项目运行在手机上。
+
+
+真机运行、调试
+Android 5.0以上及更高版本，可以使用adb reverse命令
+adb reverse tcp:8081 tcp:8081
+
+
+
+
+Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator.PC-20150615FTNL>cd f:
+F:\
+
+C:\Users\Administrator.PC-20150615FTNL>f:
+
+F:\>cd rn
+
+F:\rn>git clone https://github.com/facebook/react-native.git
+Cloning into 'react-native'...
+fatal: unable to access 'https://github.com/facebook/react-native.git/': Failed
+to connect to github.com port 443: Timed out
+
+F:\rn>git clone https://github.com/facebook/react-native.git
+Cloning into 'react-native'...
+fatal: unable to access 'https://github.com/facebook/react-native.git/': Failed
+to connect to github.com port 443: Timed out
+
+F:\rn>443
+'443' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+F:\rn>git clone https://github.com/facebook/react-native.git
+Cloning into 'react-native'...
+fatal: unable to access 'https://github.com/facebook/react-native.git/': Failed
+to connect to github.com port 443: Timed out
+
+F:\rn>ipconfig
+
+Windows IP 配置
+
+
+以太网适配器 本地连接:
+
+   连接特定的 DNS 后缀 . . . . . . . : hmc
+   本地链接 IPv6 地址. . . . . . . . : fe80::bd1e:178b:c700:c586%11
+   IPv4 地址 . . . . . . . . . . . . : 10.0.1.18
+   子网掩码  . . . . . . . . . . . . : 255.255.255.0
+   默认网关. . . . . . . . . . . . . : 10.0.1.1
+
+以太网适配器 VirtualBox Host-Only Network:
+
+   连接特定的 DNS 后缀 . . . . . . . :
+   本地链接 IPv6 地址. . . . . . . . : fe80::886b:1f39:92d7:6725%14
+   自动配置 IPv4 地址  . . . . . . . : 169.254.103.37
+   子网掩码  . . . . . . . . . . . . : 255.255.0.0
+   默认网关. . . . . . . . . . . . . :
+
+隧道适配器 isatap.{C654A6C6-3365-477C-B860-9C61981B5C63}:
+
+   媒体状态  . . . . . . . . . . . . : 媒体已断开
+   连接特定的 DNS 后缀 . . . . . . . :
+
+隧道适配器 本地连接* 11:
+
+   媒体状态  . . . . . . . . . . . . : 媒体已断开
+   连接特定的 DNS 后缀 . . . . . . . :
+
+隧道适配器 isatap.hmc:
+
+   媒体状态  . . . . . . . . . . . . : 媒体已断开
+   连接特定的 DNS 后缀 . . . . . . . : hmc
+
+F:\rn>cd F:\rn\react-native-master\react-native-cli
+
+F:\rn\react-native-master\react-native-cli>npm install -g
+C:\Program Files\nodejs\react-native -> C:\Program Files\nodejs\node_modules\rea
+ct-native-cli\index.js
+react-native-cli@1.0.0 C:\Program Files\nodejs\node_modules\react-native-cli
+├── semver@5.3.0
+├── minimist@1.2.0
+├── chalk@1.1.3 (escape-string-regexp@1.0.5, supports-color@2.0.0, ansi-style
+s@2.2.1, strip-ansi@3.0.1, has-ansi@2.0.0)
+└── prompt@0.2.14 (revalidator@0.1.8, pkginfo@0.4.0, winston@0.8.3, read@1.0.
+7, utile@0.2.1)
+
+F:\rn\react-native-master\react-native-cli>cd F:\rn\rn_project
+
+F:\rn\rn_project>react-native init AwesomeProject
+This may take some time...
+This will walk you through creating a new React Native project in F:\rn\rn_proje
+ct\AwesomeProject
+Installing react-native package from npm...
+^C终止批处理操作吗(Y/N)? N
+
+F:\rn\rn_project>react-native init AwesomeProject
+This may take some time...
+This will walk you through creating a new React Native project in F:\rn\rn_proje
+ct\AwesomeProject
+Installing react-native package from npm...
+Setting up new React Native app in F:\rn\rn_project\AwesomeProject
+react@15.3.2 node_modules\react
+├── object-assign@4.1.0
+├── loose-envify@1.3.0 (js-tokens@2.0.0)
+└── fbjs@0.8.5 (immutable@3.8.1, ua-parser-js@0.7.10, promise@7.1.1, isomorph
+ic-fetch@2.2.1, core-js@1.2.7)
+npm WARN peerDependencies The peer dependency whatwg-fetch@^1.0.0 included from
+jest-react-native will no
+npm WARN peerDependencies longer be automatically installed to fulfill the peerD
+ependency
+npm WARN peerDependencies in npm 3+. Your application will need to depend on it
+explicitly.
+npm WARN deprecated lodash.assign@4.2.0: This package is deprecated. Use Object.
+assign.
+npm WARN deprecated minimatch@2.0.10: Please update to minimatch 3.0.2 or higher
+ to avoid a RegExp DoS issue
+react-test-renderer@15.3.2 node_modules\react-test-renderer
+
+whatwg-fetch@1.0.0 node_modules\whatwg-fetch
+
+jest-react-native@16.0.0 node_modules\jest-react-native
+
+babel-preset-react-native@1.9.0 node_modules\babel-preset-react-native
+├── babel-plugin-syntax-async-functions@6.13.0
+├── babel-plugin-syntax-flow@6.18.0
+├── babel-plugin-syntax-jsx@6.18.0
+├── babel-plugin-syntax-class-properties@6.13.0
+├── babel-plugin-syntax-trailing-function-commas@6.13.0
+├── react-transform-hmr@1.0.4 (global@4.3.1, react-proxy@1.1.8)
+├── babel-plugin-react-transform@2.0.2 (lodash@4.16.5)
+├── babel-plugin-transform-es2015-for-of@6.18.0 (babel-runtime@6.18.0)
+├── babel-plugin-transform-react-jsx@6.8.0 (babel-helper-builder-react-jsx@6.
+18.0, babel-runtime@6.18.0)
+├── babel-plugin-transform-flow-strip-types@6.18.0 (babel-runtime@6.18.0)
+├── babel-plugin-transform-react-jsx-source@6.9.0 (babel-runtime@6.18.0)
+├── babel-plugin-transform-react-display-name@6.8.0 (babel-runtime@6.18.0)
+├── babel-plugin-transform-class-properties@6.18.0 (babel-helper-function-nam
+e@6.18.0, babel-runtime@6.18.0)
+├── babel-plugin-transform-es2015-function-name@6.9.0 (babel-types@6.18.0, ba
+bel-helper-function-name@6.18.0, babel-runtime@6.18.0)
+├── babel-plugin-transform-es2015-arrow-functions@6.8.0 (babel-runtime@6.18.0
+)
+├── babel-plugin-transform-es2015-spread@6.8.0 (babel-runtime@6.18.0)
+├── babel-plugin-transform-es2015-template-literals@6.8.0 (babel-runtime@6.18
+.0)
+├── babel-plugin-transform-es2015-destructuring@6.18.0 (babel-runtime@6.18.0)
+
+├── babel-plugin-transform-es2015-computed-properties@6.8.0 (babel-helper-def
+ine-map@6.18.0, babel-template@6.16.0, babel-runtime@6.18.0)
+├── babel-plugin-check-es2015-constants@6.8.0 (babel-runtime@6.18.0)
+├── babel-plugin-transform-object-rest-spread@6.16.0 (babel-plugin-syntax-obj
+ect-rest-spread@6.13.0, babel-runtime@6.18.0)
+├── babel-plugin-transform-es2015-classes@6.18.0 (babel-helper-replace-supers
+@6.18.0, babel-messages@6.8.0, babel-helper-optimise-call-expression@6.18.0, bab
+el-helper-function-name@6.18.0, babel-helper-define-map@6.18.0, babel-template@6
+.16.0, babel-types@6.18.0, babel-traverse@6.18.0, babel-runtime@6.18.0)
+├── babel-plugin-transform-es2015-literals@6.8.0 (babel-runtime@6.18.0)
+├── babel-plugin-transform-es2015-block-scoping@6.18.0 (babel-template@6.16.0
+, babel-types@6.18.0, babel-traverse@6.18.0, lodash@4.16.5, babel-runtime@6.18.0
+)
+├── babel-plugin-transform-es2015-shorthand-properties@6.18.0 (babel-types@6.
+18.0, babel-runtime@6.18.0)
+├── babel-plugin-transform-object-assign@6.8.0 (babel-runtime@6.18.0)
+├── babel-plugin-transform-es2015-parameters@6.18.0 (babel-helper-get-functio
+n-arity@6.18.0, babel-helper-call-delegate@6.18.0, babel-template@6.16.0, babel-
+types@6.18.0, babel-traverse@6.18.0, babel-runtime@6.18.0)
+├── babel-plugin-transform-es2015-modules-commonjs@6.18.0 (babel-plugin-trans
+form-strict-mode@6.18.0, babel-template@6.16.0, babel-types@6.18.0, babel-runtim
+e@6.18.0)
+└── babel-plugin-transform-regenerator@6.16.1 (private@0.1.6, babel-types@6.1
+8.0, babel-runtime@6.18.0)
+
+babel-jest@16.0.0 node_modules\babel-jest
+├── babel-preset-jest@16.0.0 (babel-plugin-jest-hoist@16.0.0)
+├── babel-core@6.18.0 (slash@1.0.0, babel-messages@6.8.0, babel-template@6.16
+.0, path-is-absolute@1.0.1, babel-helpers@6.16.0, private@0.1.6, json5@0.5.0, ba
+bylon@6.13.1, convert-source-map@1.3.0, debug@2.2.0, source-map@0.5.6, babel-typ
+es@6.18.0, minimatch@3.0.3, babel-code-frame@6.16.0, babel-traverse@6.18.0, babe
+l-generator@6.18.0, lodash@4.16.5, babel-register@6.18.0, babel-runtime@6.18.0)
+└── babel-plugin-istanbul@2.0.3 (object-assign@4.1.0, find-up@1.1.2, test-exc
+lude@2.1.3, istanbul-lib-instrument@1.2.0)
+
+jest@16.0.2 node_modules\jest
+└── jest-cli@16.0.2 (jest-file-exists@15.0.0, jest-resolve-dependencies@16.0.
+2, ansi-escapes@1.4.0, jest-mock@16.0.2, callsites@2.0.0, graceful-fs@4.1.9, jes
+t-changed-files@16.0.0, istanbul-lib-coverage@1.0.0, throat@3.0.0, strip-ansi@3.
+0.1, which@1.2.11, is-ci@1.0.10, json-stable-stringify@1.0.1, chalk@1.1.3, worke
+r-farm@1.3.1, sane@1.4.1, jest-snapshot@16.0.2, jest-haste-map@16.0.2, jest-util
+@16.0.2, jest-jasmine2@16.0.2, jest-resolve@16.0.2, yargs@5.0.0, node-notifier@4
+.6.1, istanbul-api@1.0.0-aplha.10, jest-config@16.0.2, jest-environment-jsdom@16
+.0.2, istanbul-lib-instrument@1.2.0, jest-runtime@16.0.2)
+To run your app on iOS:
+   cd F:\rn\rn_project\AwesomeProject
+   react-native run-ios
+   - or -
+   Open F:\rn\rn_project\AwesomeProject\ios\AwesomeProject.xcodeproj in Xcode
+   Hit the Run button
+To run your app on Android:
+   Have an Android emulator running (quickest way to get started), or a device c
+onnected
+   cd F:\rn\rn_project\AwesomeProject
+   react-native run-android
+
+F:\rn\rn_project>cd AwesomeProject
+
+F:\rn\rn_project\AwesomeProject>react-native start
+Scanning 9 folders for symlinks in F:\rn\rn_project\AwesomeProject\node_modules
+(2ms)
+ ┌──────────────────────────────────────
+──────────────────────────────────────┐
+ │  Running packager on port 8081.
+│
+ │
+│
+ │  Keep this packager running while developing on any JS projects. Feel
+│
+ │  free to close this tab and run your own packager instance if you
+│
+ │  prefer.
+│
+ │
+│
+ │  https://github.com/facebook/react-native
+│
+ │
+│
+ └──────────────────────────────────────
+──────────────────────────────────────┘
+Looking for JS files in
+   F:\rn\rn_project\AwesomeProject
+
+[Hot Module Replacement] Server listening on /hot
+
+React packager ready.
+
+[2016-10-31 18:15:46] <START> Requesting bundle: {"url":"/index.android.bundle?p
+latform=android"}
+[2016-10-31 18:17:55] <START> Requesting bundle: {"url":"/index.android.bundle?p
+latform=android"}

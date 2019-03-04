@@ -1,0 +1,114 @@
+参照文档：http://www.jianshu.com/p/22aa14664cf9?open_source=weibo_search
+
+
+1、按照原生应用创建流程，新建一个Android原生项目buyer。
+
+2、cd切换到项目buyer的根目录或者AS的terminal默认目录,执行npm init 该命令会创建一个package.json文件，并且提示我们输入一些信息，不过name必须要为全英文小写（不能包含其他字符）且添加"start": "node node_modules/react-native/local-cli/cli.js start" 到package.json 文件下 scripts标签。
+
+3、添加React及React Native依赖（可以根据react native init “项目名称”）中的package.json中复制，得到最新的依赖包，例如：
+ "dependencies": {
+    "react": "15.3.2",
+    "react-native": "0.36.0"
+  },
+
+4、在项目根目录（当前项目的根目录）下面执行npm install或者（npm install --save react react-native）安装依赖模块，也可以将之前init 项目下的node_modules文件包拷贝到当前根目录。
+
+5、在当前根目录下，执行curl -o .flowconfig  https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig，做一下flow配置，会生成.flowconfig
+
+6、在 module 的build.gradle文件中的配置compile 'com.facebook.react:react-native:+' 如果直接这样的话，官方会去下载已经提交到0.20.1版本，所以我们这边还是需要做一些配置，让它可以加载我们node_modules文件夹中react-native本地最新版本库。
+
+在根目录:android/build.gradle进行如下修改：
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/node_modules/react-native/android"
+        }
+    }
+}
+7、在根目录下创建一个index.android.js，代码：
+'use strict';
+ 
+import React from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+ 
+class MyAwesomeApp extends React.Component {
+  render() {
+    return (
+      <View >
+        <Text style={styles.hello}>Hello, World</Text>
+        <Text style={styles.hello}>恭喜你已经完成React Native移植Android项目</Text>
+        <Text style={styles.hello}>博客地址:www.lcode.org</Text>
+      </View>
+    )
+  }
+}
+var styles = StyleSheet.create({
+  hello: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+});
+ 
+AppRegistry.registerComponent('testinte', () => MyAwesomeApp);
+其中，AppRegistry.registerComponent的组件名称，与前面在原生代码中的getMainComponentName返回的名称必须一致。
+
+
+8，生成index.android.bundle文件，
+1）在src/main目录下，新建assets文件，然后在当前as terminal下，执行react-native start启动服务器
+
+（每次修改rn代码，都需要执行一次）
+2）执行react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output app/src/main/assets/index.android.bundle --assets-dest app/src/main/res/
+
+
+会在assets文件夹下，生成index.android.bundle文件，
+
+
+其中，这里必须书写原生的代码
+1、MainActivity必须继承ReactActivity
+2、新建XXXApplication继承Application实现ReactApplication接口，并配置到manifest文件中，具体的参考buyer项目
+
+
+9、运行APP
+在配置完上面的配置后，执行npm start（或者react-native start）启动React服务器,一次只能启动一个服务器（有多个项目运行时，只能开启一个），在显示Ready后，重新打开一个cmd,还是在根目录下，两种方法： 
+1. 在命令行中项目目录下运行gradlew installDebug 
+2. 直接利用Android Studio像平常一样运行项目，此时可能需要配置端口号：10.0.1.22:8081
+
+注意：权限配置
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+及调试所需要的：
+ <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
+图片放置的位置：
+1、自定义文件夹路径，其与node_modules文件夹同级的目录，图片名称带后缀。
+   <Image source={require('./img/test.png')} />
+2、网络图片：pic是一个含图片URL的地址js对象
+  <Image source={{uri:BANDER_IMGS[0].brandLogo}} style={styles.brand_item}>
+3、将图片放置于drawable文件夹下：则其引用如下：其中图片名称不带后缀
+   <Image source={{uri:'ic_center_icon'}} style={{width: 193, height: 110}}/>
+
+版本对应： 
+"react": "^16.0.0-alpha.12",
+"react-native": "^0.47.2"
+
+//导航器组件必须要在react-native-deprecated-custom-components导入
+npm install react-native-deprecated-custom-components --save
+//插入指定的react版本
+npm install react@16.0.0-alpha.6
+//插入TimerMinxin
+npm I react-native-timer-mixin --save
+
+chrome远程调试
+1、在Developer Menu下单击”Debug JS Remotely”
+2、打开Chrome菜单->选择更多工具->选择开发者工具
+3、执行adb reverse tcp:8081 tcp:8081或者“Developer Menu”下的“Dev Settings”中设置你的电脑ip来进行调试。
+
+
+
