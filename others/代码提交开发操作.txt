@@ -1,0 +1,107 @@
+//android studio 通过gradle自动化打包命令行:
+(环境变量中配置的path配置的gradle版本要与代码gradle-property中配置的版本一致),否则打包失败
+gradle assemblerelease
+
+1、git branch 不带参数：列出本地已经存在的分支，并且在当前分支的前面加“*”号标记
+2、git branch -r 列出所有远程分支
+3、git branch -a 列出本地分支和远程分支
+4、git branch 创建一个新的本地分支，需要注意，此处只是创建分支，不进行分支切换
+5、 git branch -m | -M oldbranch newbranch 重命名分支，如果newbranch名字分支已经存在，则需要使用-M强制重命名，否则，使用-m进行重命名。
+on
+6、git branch -d | -D branchname 删除branchname本地分支
+
+7、git push origin :branchname 删除远程branchname分支(分支名后面有空格)
+
+8,as创建本地分支后，如何将该分支同步到远程仓库呢？
+  1、基于本地某个分支创建一个本地分支后，在as中可以并check out 到该分支。
+  2、修改新分支下的代码，然后点击当前应用包名根目录--->Git--->Commit Directory--->提交代码到current branch.
+  3、切换到代码仓库（gitlab），可以看到新的本地分支已经同步到仓库中，并新建了一个远程分支。
+*
+*/
+//拉取代码  git clone http://10.0.0.10:18080/NativeApp/dealer_hybrid_android_container.git
+//打开工程，
+
+注意点1：
+本地两个分支（创建是为父子关系），在代码修改后，会自动同步，但提交其中任意一个掉远程仓库后，则本地同步消失，此时需远程合并代码，然后，将合并后的代码push一下，将远程同步的最新代码更新到本地！
+
+
+目前分支：
+
+本地：dev 开发分支（日常功能开发分支）
+      dealer_4.4之前并行开发的分支（可以作为紧急修复BUG分支）
+
+远程：dev
+      dealer_4.4 
+      master(可以作为主分支)
+
+
+git rm -r --cached .清除本地缓存，如果不修改，有时gitignore文件配置不生效
+#先删除本地仓库缓存再添加并提交，注意中间包含空格
+git rm -r --cached .
+git add .
+git commit -m "fixed untracked files"
+git push origin master
+//提交到远程仓库
+git remote add origin git@github.com:alexnest/mmall.git
+
+
+创建自己的分支---git branch 分支名称（dev）ggit 
+
+在当前分支（dev）：
+git add .                 #加入所有改动
+git commit -m "message"   #提交所有改动（message为本次修改的描述）
+git push                  #将当前分支修改的最新代码推送到远程分支
+
+
+待合并的目标分支（dealer_4.4）：
+
+git checkout dealer_4.4          #切换分支到dealer_4.4
+git pull                         #拉下最新代码（防止被别人修改，先拉取最新的）
+git merge dev                    #合并dev分支最新代码到dealer_4.4分支（确保当前操作是在dealer_4.4分支下）
+git push origin dealer_4.4       #推送到远程分支
+
+
+
+
+
+git push origin --force  //强制回滚远程代码
+
+git remote add origin https://git.oschina.net/xxx/test_3.git  //将本地仓库的代码放到远程仓库去
+
+清除缓存后重新添加（解决忽略gitignore无效的问题）
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+
+PUSH代码到github的代理配置：git config http.proxy 127.0.0.1:1080
+取消：git config --global --unset http.proxy
+
+
+
+2016.12.21
+商户端最新仓库地址：git@gitlab.haomaiche.com:app/app_android_dealer.git
+用户端最新仓库地址：git@gitlab.haomaiche.com:app/app_android_buyer.git
+git clone -b指定分支
+
+
+
+以后大家参与开发，请遵循下面的步骤：
+1）在本地创建一个文件夹，当前文件夹下打开cmd,从服务器上克隆相关工程： git clone http://hmc.ddns.net:8080/***/***.git
+
+2）进入该工程，查看当前的分支结构，确保当前处于默认分支dev：git branch -a(列出本地分支和远程分支)
+3）然后从dev分支中，切出一个自己的分支：git checkout -b xxx(自己的分支)
+4）在自己的分支上进行功能开发（开发过程可能是几分钟至几天，尽量不要太长时间，否则代码合并起来很困难）
+5）开发完成（有可能的话，要通过单元测试）后，提交代码：
+	先    	git add . 
+	然后  	git commit -am "Comments"
+6）切换到dev分支上，更新dev分支（主要的原因是其它开发人员，可能已经对dev分支做了修改）：
+	先		git checkout dev 
+	然后 	git pull
+7）把自己开发的代码合并到dev分支上(确保当前处于dev分支)：git merge xxx(自己的分支)
+8）如果有冲突，并且Git不能自动合并该冲突，则需要手动解决。解决完冲突后，需要在dev分支上，重新测试一下代码
+9）将本地的dev分支推送到服务器的dev分支上：git push origin dev
+10）通知相关开发人员
+11）完
+
+提交本地代码到新的远程仓库：
+http://www.cnblogs.com/morlin/p/4649735.html

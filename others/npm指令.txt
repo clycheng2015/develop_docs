@@ -1,0 +1,19 @@
+npm -v  当前npm版本
+npm install npm -g    升级npm版本
+cnpm install npm -g   使用淘宝镜像安装
+
+npm install <Module Name>  --save(保存记录到项目的package.json) 安装某个第三方模块
+
+npm list -g 查看所有全局安装的模块
+
+npm list <Module Name> 查看某个模块的版本号
+
+npm uninstall <Module Name> 卸载模块
+
+npm update <Module Name>更新模块
+
+npm init 创建模块（生成当前模块的package.json文件）
+
+npm adduser 在npm 资源库中注册用户，一般使用邮箱及密码
+
+npm publish  发布当前模块

@@ -1,0 +1,143 @@
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123456');
+
+J5R;91.fO6:s
+//修改密码
+alter user 'root'@'localhost' identified by '123456';   centos:ALTER USER USER() IDENTIFIED BY '12345678';
+
+//刷新用户
+flush privileges;
+
+//navicat for mysql
+navicat for mysql 链接时报错：1251-Client does not support authentication protocol requested by server 
+解决：
+ 根据select user,plugin from mysql.user;中提示，修改ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';密码及认证 插件！
+
+
+
+启动和停止服务：
+net start mysql
+new stop mysql
+
+登录
+mysql -h localhost -u root -p
+输入密码：root
+
+退出MySQL
+quit
+
+
+时区修改（基于代码运行时报时区错误）
+show variables like "%time_zone%";
+> set global time_zone = '+8:00'; ##修改mysql全局时区为北京时间，即我们所在的东8区
+> set time_zone = '+8:00'; ##修改当前会话时区
+> flush privileges; #立即生效
+
+ 
+
+建库：CREATE DATABASE IF NOT EXISTS lewis DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
+
+（退出MySQL输入）备份数据库：mysqldump -uroot -p -h localhost lewis>lewis1.sql
+（退出MySQL输入）导入数据库：mysql -uroot -p lewis < /usr/mysql_datas/lewis1.sql 
+
+
+
+//Spring Boot（Java）打jar包
+http://www.cnblogs.com/toutou/p/9675218.html
+--->执行cms
+//服务器端执行
+java -jar spring1-0.0.1-SNAPSHOT.jar 
+
+//阿里云防火墙及端口开放
+[root@izuf65tqjrgkxa9x8div3sz demos]# systemctl stop firewalld 
+[root@izuf65tqjrgkxa9x8div3sz demos]# systemctl mask firewalld
+[root@izuf65tqjrgkxa9x8div3sz demos]# iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
+[root@izuf65tqjrgkxa9x8div3sz demos]# service iptables save
+iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
+[root@izuf65tqjrgkxa9x8div3sz demos]# systemctl restart iptables.service
+
+
+
+
+
+
+//初始登录
+mysql -u root -p
+//获取初始密码
+YZdgj9<aKpr0
+跳过root临时密码登录数据库修改密码
+
+1. Stop mysql:systemctl stop mysqld
+
+2. Set the mySQL environment option 
+
+systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+
+3. Start mysql usig the options you just set
+
+systemctl start mysqld
+
+4. Login as root
+
+mysql -u root
+
+5. Update the root user password with these mysql commands
+
+mysql> UPDATE mysql.user SET authentication_string = PASSWORD('MyNewPassword')  WHERE User = 'root' AND Host = 'localhost';
+
+mysql> FLUSH PRIVILEGES;
+
+mysql> quit
+
+6. Stop mysql
+
+systemctl stop mysqld
+
+7. Unset the mySQL envitroment option so it starts normally next time
+
+systemctl unset-environment MYSQLD_OPTS
+
+8. Start mysql normally:
+
+systemctl start mysqld
+
+9. Try to login using your new password:
+
+ mysql -u root -p
+
+
+
+CREATE TABLE note(id int PRIMARY KEY NOT NULL COMMENT '身份验证码' AUTO_INCREMENT,name varchar(24) NOT NULL COMMENT '名称',url text COMMENT '链接',imgurl varchar(100) COMMENT '图片',create_time datetime COMMENT '创建时间',modify_time datetime COMMENT '修改时间',des  varchar(100) COMMENT '简介',origin varchar(40) COMMENT '来源') ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
+
+
+修改表字段类型：ALTER TABLE note MODIFY COLUMN create_time varchar(40);
+
+
+
+建表语句：
+CREATE TABLE sword
+(
+    id int PRIMARY KEY NOT NULL COMMENT '身份验证码' AUTO_INCREMENT,
+    name varchar(24) NOT NULL COMMENT '名称',
+    info text COMMENT '描述信息',
+    imgurl varchar(100) COMMENT '图片',
+    create_time datetime COMMENT '创建时间',
+    modify_time datetime COMMENT '修改时间',
+    origin varchar(40) COMMENT '来源'
+);
+
+
+
+//mysql 指令在并登录后执行，
+而mysqldump则在单独的普通的cmd下执行；
+
+
+
+
+
+
+
+
+
+
+
+husky jsx-loaderlint-staged mini-css-extract-plugin node-sass opener postcss-loader prettier react-hot-loader react-loadable redux-devtools-extension sass-loader standard style-loader url-loader webpack webpack-bundle-analyzer webpack-cli webpack-dev-server webpack-stylish
